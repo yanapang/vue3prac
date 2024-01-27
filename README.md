@@ -1,2 +1,2 @@
 # vue3prac
-vue3practice with typescript
+This project is made for study purpose of vue 3, typescript.
