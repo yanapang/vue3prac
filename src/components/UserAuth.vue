@@ -11,10 +11,10 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("login");
+      this.$store.dispatch("users/login");
     },
     logout() {
-      this.$store.dispatch("logout");
+      this.$store.dispatch("users/logout");
     },
   },
 };
