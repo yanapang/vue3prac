@@ -16,7 +16,12 @@ const store = createStore({
       counter: 0,
     };
   },
-  mutations: {},
+  mutations: {
+    increment(state) {
+      //state is automatically considered as default parameter
+      state.counter = state.counter + 2;
+    },
+  },
   actions: {},
   getters: {},
 });
