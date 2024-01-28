@@ -22,9 +22,14 @@ export default {
     BaseContainer,
   },
   methods: {
+    /**
+     * in case commiting mutations use '$store.commit'
+     * or if using actions use '$store.dispatch'
+     */
     addOne() {
-      // this.$store.commit("increment");
-      this.$store.commit({
+      // this.$store.commit("increment", {value: 10});
+      // this.$store.dispatch("increment", {value: 10});
+      this.$store.dispatch({
         type: "increase",
         value: 3,
       });

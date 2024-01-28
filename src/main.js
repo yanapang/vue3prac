@@ -19,7 +19,7 @@ const store = createStore({
   mutations: {
     increment(state) {
       //state is automatically considered as default parameter
-      state.counter = state.counter + 2;
+      state.counter = state.counter + 3;
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
@@ -41,7 +41,18 @@ const store = createStore({
       return finalCounter;
     },
   },
-  actions: {},
+  actions: {
+    //asynchronous actions only could be executed in actions.
+    increment(context) {
+      setTimeout(() => {
+        context.commit("increment"); //action commits mutation
+      }, 2000);
+    },
+    increase(context, payload) {
+      //if modification is needed, here is where to modify payload before commit it to mutation.
+      context.commit("increase", payload);
+    },
+  },
 });
 
 const app = createApp(App);
