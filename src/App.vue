@@ -1,7 +1,7 @@
 <template>
   <base-container title="Vuex">
     <the-counter />
-    <favorite-value></favorite-value>
+    <favorite-value />
 
     <button @click="addOne">Add 2</button>
     <change-counter />
