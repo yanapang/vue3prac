@@ -1,17 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <base-container title="Vuex">
+    <the-counter></the-counter>
+    <button @click="addOne">Add 1</button>
+  </base-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseContainer from "@/components/BaseContainer.vue";
+import TheCounter from "@/components/TheCounter.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    TheCounter,
+    BaseContainer,
+  },
+  methods: {
+    addOne() {
+      this.$store.state.counter++;
+    },
+  },
+};
 </script>
 
 <style>
