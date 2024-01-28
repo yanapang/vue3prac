@@ -4,17 +4,10 @@ import { createStore } from "vuex";
 
 import App from "./App.vue";
 
-//Router
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [{ path: "/", component: App }],
-});
-
-const store = createStore({
+const counterModule = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false,
     };
   },
   mutations: {
@@ -24,9 +17,6 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
-    },
-    setAuth(state, payload) {
-      state.isLoggedIn = payload.isAuth;
     },
   },
   getters: {
@@ -44,9 +34,6 @@ const store = createStore({
 
       return finalCounter;
     },
-    userIsAuthenticated(state) {
-      return state.isLoggedIn;
-    },
   },
   actions: {
     //asynchronous actions only could be executed in actions.
@@ -59,6 +46,26 @@ const store = createStore({
       //if modification is needed, here is where to modify payload before commit it to mutation.
       context.commit("increase", payload);
     },
+  },
+};
+
+const UserModule = {
+  state() {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  mutations: {
+    setAuth(state, payload) {
+      state.isLoggedIn = payload.isAuth;
+    },
+  },
+  getters: {
+    userIsAuthenticated(state) {
+      return state.isLoggedIn;
+    },
+  },
+  actions: {
     login(context) {
       context.commit("setAuth", { isAuth: true });
     },
@@ -66,6 +73,20 @@ const store = createStore({
       context.commit("setAuth", { isAuth: false });
     },
   },
+};
+
+const store = createStore({
+  modules: {
+    //connect store modules in separate object.
+    numbers: counterModule,
+    users: UserModule,
+  },
+});
+
+//Router
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [{ path: "/", component: App }],
 });
 
 const app = createApp(App);
