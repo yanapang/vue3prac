@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     isAuth() {
-      return this.$store.getters.userIsAuthenticated;
+      return this.$store.getters["users/userIsAuthenticated"];
     },
   },
   methods: {
